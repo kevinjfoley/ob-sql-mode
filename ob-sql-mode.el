@@ -209,7 +209,7 @@ parameters to the code block.")
 
 Determines the buffer from values in PROCESSED-PARAMS."
   (let* ((bufname (org-babel-sql-mode--buffer-name processed-params))
-         (sql-bufname (format "*SQL: %s*" bufname))
+         (sql-bufname (format "*SQL-%s*" bufname))
          (buf (get-buffer sql-bufname))
          (product (intern (cdr (assoc :product processed-params)))))
     (unless (assoc product sql-product-alist)
@@ -234,8 +234,11 @@ Determines the buffer from values in PROCESSED-PARAMS."
 
 The buffer name is (currently) derived from the :product and :session
 keys in PROCESSED-PARAMS, but do not depend on this."
-  (format "%s:%s" (cdr (assoc :product processed-params))
-          (cdr (assoc :session processed-params))))
+  (format "%s%s"
+	  (cdr (assoc :product processed-params))
+          (or (if (cdr (assoc :session processed-params))
+		  (concat "-" (cdr (assoc :session processed-params))))
+	      "")))
 
 (provide 'ob-sql-mode)
 ;;; ob-sql-mode.el ends here
