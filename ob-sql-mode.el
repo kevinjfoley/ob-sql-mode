@@ -236,9 +236,10 @@ The buffer name is (currently) derived from the :product and :session
 keys in PROCESSED-PARAMS, but do not depend on this."
   (format "%s%s"
 	  (cdr (assoc :product processed-params))
-          (or (if (cdr (assoc :session processed-params))
-		  (concat "-" (cdr (assoc :session processed-params))))
-	      "")))
+          (if (equal (cdr (assoc :session processed-params))
+		     "none")
+	      ""
+	      (concat "-" (cdr (assoc :session processed-params))))))
 
 (provide 'ob-sql-mode)
 ;;; ob-sql-mode.el ends here
