@@ -194,7 +194,7 @@ parameters to the code block.")
                      "\n" " "
                      ;; Remove comments, as the query is going to be
                      ;; flattened to one line.
-                     (replace-regexp-in-string " --.*\n" "" body)))
+                     (replace-regexp-in-string "\\( \\|^\\)--.*\\(\n\\|$\\)" "" body)))
                    ";" t "[[:space:]\r\n]+"))))
     (with-temp-buffer
       (let ((adjusted-statements (run-hook-with-args-until-success
