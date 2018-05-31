@@ -172,10 +172,12 @@ parameters to the code block.")
 (eval-after-load "org"
   '(progn
      (add-to-list 'org-src-lang-modes '("sql-mode" . sql))
-     (add-to-list 'org-structure-template-alist
-                  `(,org-babel-sql-mode-template-selector
-                    "#+BEGIN_SRC sql-mode ?\n\n#+END_SRC"
-                    "#+BEGIN_SRC sql-mode ?\n\n#+END_SRC"))))
+     ;; Causing issues with org-tempo - doesn't meet requriments for org-structure-template-alist
+     ;; (add-to-list 'org-structure-template-alist
+     ;;              `(,org-babel-sql-mode-template-selector
+     ;;                "#+BEGIN_SRC sql-mode ?\n\n#+END_SRC"
+     ;;                "#+BEGIN_SRC sql-mode ?\n\n#+END_SRC"))
+     ))
 
 
 (defun org-babel-execute:sql-mode (body params)
