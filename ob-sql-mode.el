@@ -211,7 +211,7 @@ parameters to the code block.")
 
 Determines the buffer from values in PROCESSED-PARAMS."
   (let* ((bufname (org-babel-sql-mode--buffer-name processed-params))
-         (sql-bufname (format "*SQL: %s*" bufname))
+         (sql-bufname (format "*SQL: <%s>*" bufname))
          (buf (get-buffer sql-bufname))
          (product (intern (cdr (assoc :product processed-params)))))
     (unless (assoc product sql-product-alist)
